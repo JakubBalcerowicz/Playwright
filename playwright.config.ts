@@ -1,4 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+
+dotenv.config(); 
 
 /**
  * Read environment variables from file.
@@ -47,6 +50,17 @@ export default defineConfig({
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
+    },
+    {
+      name: 'api',
+      testDir: './tests/api', // Ten projekt szuka testów TYLKO w folderze tests/api
+      use: {
+        // 
+        baseURL: process.env.API_BASE_URL, 
+        extraHTTPHeaders: {
+          'Accept': 'application/json',
+        },
+      },
     },
 
     /* Test against mobile viewports. */

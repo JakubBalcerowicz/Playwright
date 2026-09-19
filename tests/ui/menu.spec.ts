@@ -1,4 +1,4 @@
-import { test, expect } from './fixtures/baseTest';
+import { test, expect } from '../fixtures/baseTest';
 
 test('Sprawdzamy działanie menu kategorii pokaż więcej/mniej', async ({ sgMexPage, page }) => {
 
