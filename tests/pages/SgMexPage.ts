@@ -27,7 +27,7 @@ export class SgMexPage {
     await this.handleCookies();
   }
 
-  private async handleCookies() {
+  public async handleCookies() {
     try {
       await this.acceptCookiesBtn.waitFor({ state: 'visible', timeout: 3000 });
       await this.acceptCookiesBtn.click();
