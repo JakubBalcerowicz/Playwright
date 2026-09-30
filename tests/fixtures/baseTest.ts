@@ -1,14 +1,14 @@
 import { test as base } from '@playwright/test';
-import { SgMexPage } from '../pages/SgMexPage'; 
+import { MainPage } from '../pages/MainPage'; 
 
 type MyFixtures = {
-  sgMexPage: SgMexPage;
+  mainPage: MainPage;
 };
 
 export const test = base.extend<MyFixtures>({
-  sgMexPage: async ({ page }, use) => {
+  mainPage: async ({ page }, use) => {
 
-    const sgMexPage = new SgMexPage(page);
+    const sgMexPage = new MainPage(page);
     await use(sgMexPage);
   },
 });

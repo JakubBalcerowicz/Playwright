@@ -1,6 +1,6 @@
 import { expect, Locator, Page } from '@playwright/test';
 
-export class SgMexPage {
+export class MainPage {
   private readonly page: Page;
   private readonly menuObj: Locator;
   private readonly acceptCookiesBtn: Locator;
@@ -37,9 +37,9 @@ export class SgMexPage {
   }
 
   async hoverMenuItem(itemName: string) {
-    const targetItem = this.menuObj
-      .locator('.item-name')
-      .getByText(itemName);
+    const targetItem = this.menuObj.locator('.menu-category-item', {
+    has: this.page.locator('.item-name').getByText(itemName) 
+  });
       
     await targetItem.waitFor({ state: 'visible' });
     

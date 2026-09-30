@@ -1,21 +1,25 @@
 import { test, expect } from '../fixtures/baseTest';
 
-test('Sprawdzamy działanie menu kategorii pokaż więcej/mniej', async ({ sgMexPage, page }) => {
+test('Sprawdzamy działanie menu kategorii pokaż więcej/mniej', async ({ mainPage, page }) => {
 
-  const buttonMore = sgMexPage.getSubCategoryButtonLocator("Więcej...", 5);
-  const buttonLess = sgMexPage.getSubCategoryButtonLocator("Pokaż mniej...");
+  const buttonMore = mainPage.getSubCategoryButtonLocator("Więcej...", 5);
+  const buttonLess = mainPage.getSubCategoryButtonLocator("Pokaż mniej...");
 
-  await sgMexPage.navigate();
+  await mainPage.navigate();
 
-  await sgMexPage.hoverMenuItem('TV, Audio i RTV');
+  await page.waitForTimeout(600);
+  //test przestal dzialac hover zachowuje sie poprawnie a menu z boku nie wysiwetla sie
+  await mainPage.hoverMenuItem('TV, Audio i RTV');
+ 
+
 
   await test.step('Kliknij "Więcej..." i sprawdź czy menu się rozwinęło', async () => {
-    await sgMexPage.clickSubCategoryButton("Więcej...", 5);
+    await mainPage.clickSubCategoryButton("Więcej...", 5);
     await expect(buttonLess).toBeAttached();
   });
 
   await test.step('Kliknij "Pokaż mniej..." i sprawdź czy menu się zwinęło', async () => {
-    await sgMexPage.clickSubCategoryButton("Pokaż mniej...");
+    await mainPage.clickSubCategoryButton("Pokaż mniej...");
     await expect(buttonMore).toBeAttached();
   });
 });
