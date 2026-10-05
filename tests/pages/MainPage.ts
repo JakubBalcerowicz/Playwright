@@ -37,17 +37,14 @@ export class MainPage {
   }
 
   async hoverMenuItem(itemName: string) {
-    const targetItem = this.menuObj.locator('.menu-category-item', {
-    has: this.page.locator('.item-name').getByText(itemName) 
-  });
-      
-    await targetItem.waitFor({ state: 'visible' });
-    
-    //Dodatkowo wymuszamy stabilny hover
-    await targetItem.hover({ force: true });
+    const targetItem = this.menuObj.locator('li.menu-category-item', { hasText: itemName });
 
-    //Dajemy animacji menu w Media Expert chwilę na pełne rozwinięcie panelu bocznego
-    await this.page.waitForTimeout(600);
+    //metoda hover za szybko najezdzala na itemu menu i skryot sie nie odpalal, trzeba zasymulowac ruch myszka na zaladowanym elemenciu menu(kategorii docelowej)
+    await targetItem.hover({ position: { x: 5, y: 5 } });
+    await this.page.waitForTimeout(100);
+    await targetItem.hover({ position: { x: 40, y: 15 } });
+    //czekamy na rozwiniecie menu 
+    await this.page.waitForTimeout(300);
   }
 
  async clickSubCategoryButton(buttonName: string, index: number = 0) {
