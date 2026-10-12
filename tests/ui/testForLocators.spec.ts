@@ -1,4 +1,4 @@
-import { test, expect } from '../fixtures/baseTest';
+import { test, expect } from '../../fixtures/baseTest';
 
 test('Klikanie w lokatory', async ({ mainPage, page }) => {
 

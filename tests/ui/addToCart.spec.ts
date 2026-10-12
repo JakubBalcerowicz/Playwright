@@ -1,4 +1,4 @@
-import { test, expect } from '../fixtures/baseTest'; // Pamiętaj, aby importować test ze SWOICH fixtures!
+import { test, expect } from '../../fixtures/baseTest'; // Pamiętaj, aby importować test ze SWOICH fixtures!
 
 test('Add to cart test', async ({ mainPage, listingPage, preCartPage, cartListPage, page }) => {
   
