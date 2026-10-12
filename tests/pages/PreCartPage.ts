@@ -1,14 +1,14 @@
-import { expect, Locator, Page } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
+import { BasePage } from './BasePage';
 
-export class PreCartPage {
-  private readonly page: Page;
+export class PreCartPage extends BasePage {
   private readonly goToCartButton: Locator;
   private readonly dialogModal: Locator;
   private readonly closeDialogButton: Locator;
   private readonly precartSummary: Locator;
 
   constructor(page: Page) {
-    this.page = page;
+    super(page); 
     this.dialogModal = page.locator('.dialog');
     this.closeDialogButton = this.dialogModal.getByRole('button', {name: "Zamknij dialog"})
     this.precartSummary = page.locator('#precart-summary-box');

@@ -1,13 +1,13 @@
-import { expect, Locator, Page } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
+import { BasePage } from './BasePage';
 
-export class CartListPage {
-  private readonly page: Page;
+export class CartListPage extends BasePage {
   private readonly goToCartButton: Locator;
   private readonly dialogModal: Locator;
   private readonly closeDialogButton: Locator;
 
   constructor(page: Page) {
-    this.page = page;
+    super(page); 
     this.goToCartButton = this.page.getByRole('button', {name: 'Przejdź do zamówienia'})
     this.dialogModal = page.locator('div.slide-panel-container').filter({ has: page.locator('h3.title', { hasText: 'Wybierz produkt ze zniżką' }) });
     this.closeDialogButton = this.dialogModal.locator('.close-side-panel-button')
